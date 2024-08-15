@@ -2,7 +2,7 @@ import db from "@/libs/db";
 
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge";
+export const runtime = process.env.NODE_ENV === "development" ? "node" : "edge";
 
 export async function POST(request: NextRequest) {
   const { text } = await request.json();

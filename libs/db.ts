@@ -16,6 +16,8 @@ const connectionString = `${process.env.POSTGRES_PRISMA_URL}`;
 
 const pool = new Pool({ connectionString });
 const adapter = new PrismaNeon(pool);
-const db = new PrismaClient({ adapter });
+let db;
 
-export default db;
+export default process.env.NODE_ENV === "development"
+  ? new PrismaClient()
+  : new PrismaClient({ adapter });
