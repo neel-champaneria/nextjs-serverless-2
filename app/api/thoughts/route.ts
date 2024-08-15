@@ -9,3 +9,8 @@ export async function POST(request: NextRequest) {
   });
   return Response.json({ message: "Thought Created" }, { status: 201 });
 }
+
+export async function GET(request: NextRequest) {
+  const thoughts = await db.thought.findMany();
+  return Response.json({ thoughts });
+}
